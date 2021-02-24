@@ -1,0 +1,23 @@
+<div class="container" role="main">
+    <h2 class="text-center">Angular Task</h2>
+    <p class="text-center">Done by Sushmitha Singaravelan</p>
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-6 col-xl-4  d-flex align-items-stretch" *ngFor="let img of galleryImages; let i = index">
+            <div class="card card-size bg-light m-1">
+                <div class="card-body mx-auto">
+                    <button type="button" *ngIf="img.src" (click)="deleteImage(i)" class="btn btn-outline-danger ">Delete</button>
+                    <div *ngIf="!img.src" (click)="fileInput.click()" class="drop-zone file-input-container">
+                        <p>click here</p>
+                    </div>
+                </div>
+                <span style="visibility: hidden;">
+          <input type="file" #fileInput ng2FileSelect [uploader]="uploader"
+            (onFileSelected)="onFileSelected($event,i)" />
+        </span>
+                <div class="card-header">
+                    <img class="card-img-top img-fluid p-0" [ngStyle]="{'visibility': img.show == false ? 'hidden' : 'visible' }" [src]="img.src" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
